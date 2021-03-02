@@ -16,10 +16,12 @@ const PASS = process.env.SMZDM_PASS
 const SEND_KEY = process.env.SEND_KEY
 
 async function downFile () {
-    const url1 = 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/backup/smzdm_checkin.js'
+    const url1 = 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/smzdm_signin.js'
+    const url12 = 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/smzdm/smzdm_mission.js'
     // const url1 = 'https://raw.githubusercontent.com/jiegto/Actions_smzdm/main/backup/smzdm_checkin.js'
     const url2 = 'https://raw.githubusercontent.com/jiegto/Actions_smzdm/main/function/magic.json'    
     await download(url1, './')
+    await download(url12, './')
     await download(url2, './')
 }
 
@@ -53,7 +55,8 @@ async function start() {
     await changeFiele();
     console.log('替换变量完毕')
     // 执行
-    await exec("node smzdm_checkin.js >> result.txt");
+    await exec("node smzdm_signin.js >> result.txt");
+    await exec("node smzdm_mission.js >> result.txt");
     console.log('执行完毕')
     const path = "./result.txt";
     let content = "";
